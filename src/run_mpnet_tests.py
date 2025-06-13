@@ -11,22 +11,14 @@ from langchain.memory import ConversationBufferMemory
 from langchain_core.prompts import PromptTemplate
 
 # ---- Settings ----
-embedding_model_name = "sentence-transformers/all-MiniLM-L6-v2"
-llms_to_test = ["mistral:instruct", "llama3", "openhermes", "zephyr"]
+embedding_model_name = "sentence-transformers/all-MiniLM-L6-v2" #Chose Embedding model to test.
+llms_to_test = ["mistral:instruct", "llama3", "openhermes", "zephyr"] #List the LLM's you want to Test
 docs_path = "../docs"
 db_path = "../chroma_db"
 output_file = "testresult_all-MiniLM-L6-v2.xlsx"
 
-questions = [
-    "What was the root cause of the transformer failure in the SmartKraft DC units reported in Romania?",
-    "How does the SmartKraft 2 system function according to the block diagram, and what are the main energy conversion stages?",
-    "What is the function of spark detection and voltage reduction in SmartKraft operation?",
-    "What temperatures were recorded for IGBT components during the heat tests in reports REPO-2942 and REPO-2944, and how stable were they?",
-    "What maintenance actions are recommended to ensure optimal performance and avoid hardware failures in SmartKraft units?",
-    "How is the SmartKraft 2 control system structured regarding I/O signals, control interface, and communication?",
-    "What torque values and installation instructions apply to final mounting of HF coils and feedthrough plates as per INST-1433?",
-    "What is the impact of the air filter and oil cooler on system cooling and performance, and how should they be maintained?"
-]
+# ---- LLM Questions ----
+questions = ["How do i make a Rainbow?", "What currency do they have in Canada?"] #Make a list of questions in this list for the LLM to use.
 
 def prepare_documents(folder):
     docs = []
