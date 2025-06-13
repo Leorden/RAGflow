@@ -10,7 +10,7 @@ from langchain.chains import ConversationalRetrievalChain
 from langchain.memory import ConversationBufferMemory
 from langchain_core.prompts import PromptTemplate
 
-# ---- INSTÄLLNINGAR ----
+# ---- Settings ----
 embedding_model_name = "sentence-transformers/all-MiniLM-L6-v2"
 llms_to_test = ["mistral:instruct", "llama3", "openhermes", "zephyr"]
 docs_path = "../docs"
@@ -68,7 +68,6 @@ def build_chain(llm, retriever):
         return_source_documents=True
     )
 
-# Skapa vektorbasen en gång om den inte redan finns
 if not os.path.exists(db_path):
     print("Creating vectorstore for embedding model...")
     embedding = HuggingFaceEmbeddings(model_name=embedding_model_name)
@@ -77,14 +76,12 @@ if not os.path.exists(db_path):
 else:
     print("Using existing ChromaDB.")
 
-# Ladda retriever (delad mellan alla LLMs)
 retriever = Chroma(
     collection_name="rag_chat",
     embedding_function=HuggingFaceEmbeddings(model_name=embedding_model_name),
     persist_directory=db_path
 ).as_retriever()
 
-# --- HUVUDLOOP ---
 results = []
 
 for llm_name in llms_to_test:
@@ -105,7 +102,6 @@ for llm_name in llms_to_test:
             "Svarstid (s)": elapsed
         })
 
-# Spara resultat till Excel
 df = pd.DataFrame(results)
 df.to_excel(output_file, index=False)
 print(f"\nAll tests completed. Results saved to: {output_file}")
