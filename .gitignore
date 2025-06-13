@@ -1,0 +1,14 @@
+# ─── Runtime artefakter ───────────────────────────────
+chroma_db/
+
+# ─── Modellmappar ─────────────────────────────────────
+LLMs/
+Embeddingmodeller/
+
+# ─── Excelfiler från testresultat ─────────────────────
+src/*.xlsx
+
+# ─── Vanliga Python-grejer ────────────────────────────
+__pycache__/
+*.pyc
+.env
