@@ -67,8 +67,8 @@ def build_conversational_chain(llm, retriever, memory):
 
 if __name__ == "__main__":
     print("Launching session chat with memory")
-    model_name = "llama3"
-    embeddings = HuggingFaceEmbeddings(model_name="intfloat/e5-base-v2")
+    model_name = "mistral:instruct" #Chose the LLM model you want to use.
+    embeddings = HuggingFaceEmbeddings(model_name="intfloat/e5-base-v2") #Chose what Embedding model you want to use.
     docs_path = "../docs"
     db_path = "../chroma_db"
 
