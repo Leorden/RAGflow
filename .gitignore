@@ -1,14 +1,19 @@
-# ─── Runtime artefakter ───────────────────────────────
+# ─── Runtime artifacts ───────────────────────────────
 chroma_db/
 
-# ─── Modellmappar ─────────────────────────────────────
+# ─── Modelfolder ─────────────────────────────────────
 LLMs/
 Embeddingmodeller/
 
-# ─── Excelfiler från testresultat ─────────────────────
+# ─── Testresults ─────────────────────
 src/*.xlsx
 
-# ─── Vanliga Python-grejer ────────────────────────────
+# ─── Docs ─────────────────────
+
+Docs/*.docx
+Docs/*.doc
+
+# ─── Python-stuff ────────────────────────────
 __pycache__/
 *.pyc
 .env
