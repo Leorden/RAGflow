@@ -15,9 +15,9 @@ from langchain_core.prompts import PromptTemplate
 def prepare_documents(folder):
     docs = []
     for file in Path(folder).glob('*.pdf'):
-        docs.extend(PyPDFLoader(file).load())
+        docs.extend(PyPDFLoader(str(file)).load())   
     for file in Path(folder).glob('*.docx'):
-        docs.extend(UnstructuredWordDocumentLoader(file).load())
+        docs.extend(UnstructuredWordDocumentLoader(str(file)).load())
     docs.extend(DirectoryLoader(folder, loader_cls=TextLoader, glob="**/*.txt").load())
     splitter = RecursiveCharacterTextSplitter.from_tiktoken_encoder(chunk_size=500, chunk_overlap=100)
     return splitter.split_documents(docs)
