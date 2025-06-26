@@ -1,5 +1,4 @@
-import os
-import glob
+from pathlib import Path
 import gradio as gr
 from gradio.themes.base import Base
 
@@ -15,9 +14,9 @@ from langchain_core.prompts import PromptTemplate
 
 def prepare_documents(folder):
     docs = []
-    for file in glob.glob(os.path.join(folder, '*.pdf')):
+    for file in Path(folder).glob('*.pdf'):
         docs.extend(PyPDFLoader(file).load())
-    for file in glob.glob(os.path.join(folder, '*.docx')):
+    for file in Path(folder).glob('*.docx'):
         docs.extend(UnstructuredWordDocumentLoader(file).load())
     docs.extend(DirectoryLoader(folder, loader_cls=TextLoader, glob="**/*.txt").load())
     splitter = RecursiveCharacterTextSplitter.from_tiktoken_encoder(chunk_size=500, chunk_overlap=100)
@@ -25,7 +24,7 @@ def prepare_documents(folder):
 
 
 def init_or_load_vectorstore(path, docs, embedding):
-    if os.path.exists(path):
+    if Path(path).exists():
         print("Loading vector store")
         return Chroma(collection_name="rag_chat", embedding_function=embedding, persist_directory=path)
     else:
@@ -70,8 +69,9 @@ if __name__ == "__main__":
     print("Launching session chat with memory")
     model_name = "llama3" #Chose the LLM model you want to use.
     embeddings = HuggingFaceEmbeddings(model_name="intfloat/e5-base-v2") #Chose what Embedding model you want to use.
-    docs_path = "../docs"
-    db_path = "../chroma_db"
+    base_dir = Path(__file__).resolve().parent.parent
+    docs_path = str(base_dir / "docs")
+    db_path = str(base_dir / "chroma_db")
 
     vectorstore = init_or_load_vectorstore(db_path, prepare_documents(docs_path), embeddings)
     retriever = vectorstore.as_retriever()
