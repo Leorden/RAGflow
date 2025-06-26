@@ -101,4 +101,4 @@ if __name__ == "__main__":
 
         question_input.submit(chat_with_memory, [question_input, state], [chatbot, state, reference_box, question_input])
 
-    app.launch()
+    app.launch(server_name="0.0.0.0", server_port=7860)
