@@ -88,12 +88,13 @@ if __name__ == "__main__":
             f"[source{idx+1}] {doc.metadata.get('source', 'unknown')}" for idx, doc in enumerate(sources)
         )
 
-        history.append((user_input, answer))
+        history.append({"role": "user", "content": user_input})
+        history.append({"role": "assistant", "content": answer})
         return history, history, formatted_sources, ""
 
     with gr.Blocks(theme=Base(), title="Session Chat with Memory") as app:
         gr.Markdown("# Conversational RAG Chat")
-        chatbot = gr.Chatbot()
+        chatbot = gr.Chatbot(type="messages")
         question_input = gr.Textbox(label="Ask a question:")
         reference_box = gr.Textbox(label="References", interactive=False)
         state = gr.State([])
