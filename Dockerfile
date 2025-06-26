@@ -1,5 +1,5 @@
 # 1. Baserad på en lätt Python-bild
-FROM python:3.10-slim
+FROM python:3.11
 
 # 2. Skapa arbetskatalog
 WORKDIR /app
