@@ -103,7 +103,7 @@ google-auth==2.28.1
     # via kubernetes
 googleapis-common-protos==1.62.0
     # via opentelemetry-exporter-otlp-proto-grpc
-gradio==3.18.0
+gradio==4.44.1
     # via -r requirements.in
 greenlet==3.0.3
     # via sqlalchemy
