@@ -53,7 +53,7 @@ kiwisolver==1.4.5
 kubernetes==29.0.0
 langchain==0.1.11
 langchain-community==0.0.27
-langchain-core==0.1.30
+langchain-core==0.1.37
 langchain-text-splitters==0.0.1
 langsmith==0.1.22
 markdown-it-py==3.0.0
