@@ -77,7 +77,7 @@ if __name__ == "__main__":
     retriever = vectorstore.as_retriever()
     retriever.search_kwargs["k"] = 4  
     memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True, output_key="answer")
-    qa = build_conversational_chain(ChatOllama(model=model_name, temperature=0.1), retriever, memory)
+    qa = build_conversational_chain(ChatOllama(model=model_name, base_url="http://host.docker.internal:11434", temperature=0.1), retriever, memory)
 
     def chat_with_memory(user_input, history):
         result = qa({"question": user_input})
